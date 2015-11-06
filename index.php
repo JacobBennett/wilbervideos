@@ -47,10 +47,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
+        <title>Wilber Group Videos</title>
+        <meta name="description" content="Checkout all of the fun and hilarious videos that the Wilber Group has created over the years.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <style>
@@ -66,6 +65,12 @@
             .header {
               width: 100%;
               text-align: center;
+            }
+
+            @media (min-width: 640px) {
+              .header {
+                height: 26em;
+              }
             }
 
             .header svg {
@@ -106,8 +111,9 @@
               width: 100%;
               display: block;
               top: 0;
-              left; 0;
+              left: 0;
               opacity: 0.75;
+              z-index: 1;
             }
 
             .video-item__image {
@@ -119,13 +125,16 @@
               position: absolute;
               top: 50%;
               left: 50%;
-              transform: translate(-50%,-50%);
+              -webkit-transform: translate(-50%,-50%);
+                  -ms-transform: translate(-50%,-50%);
+                      transform: translate(-50%,-50%);
               font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
               font-weight: 700;
               letter-spacing: 2px;
               width: 100%;
               padding: 5%;
               font-size: 1.4em;
+              z-index: 2;
             }
 
             .container {
@@ -407,23 +416,23 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-        <script src="js/vendor/bootstrap.min.js"></script>
-
+        <!-- <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/main.js"></script> -->
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+            ga('create','UA-51293444-3','auto');ga('send','pageview');
         </script>
 
         <script>
-        var module = (function(){
+        var videoHash = JSON.parse('<?php echo json_encode($config); ?>');
+
+        var module = (function(ga, videoHash){
           var el = {
             $video_container: $('#video-show-div'),
             $video_items: $('.video-item'),
@@ -439,11 +448,18 @@
           };
 
           var handleVideoClick = function() {
-            showVideo($(this).data('vimeo-uri'));
+            var vimeo_uri = $(this).data('vimeo-uri');
+            showVideo(vimeo_uri);
+          };
+
+          var gaTrackEvent = function(vimeo_uri) {
+            var videoTitle = videoHash[vimeo_uri].title;
+            ga('send', 'event', 'Videos', 'play', videoTitle);
           };
 
           var showVideo = function(vimeo_uri) {
             el.$video_container.html('<div class="embed-container"><iframe src="http://player.vimeo.com/video/' + vimeo_uri + '?autoplay=1" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>');
+            gaTrackEvent(vimeo_uri);
             var top = el.$video_container.offset().top;
             $('html,body').scrollTop(top - 100);
           };
@@ -458,7 +474,7 @@
             init: init
           };
 
-        })();
+        })(ga, videoHash);
 
         $(document).ready(function(){
           module.init();
