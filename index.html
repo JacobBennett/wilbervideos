@@ -1,43 +1,4 @@
-<?php 
-  $config = [
-    "144419979" => [
-      "image" => "workhardplayhard",
-      "title" => "WORK HARD PLAY HARD"
-    ],
-    "144405599" => [
-      "image" => "clientfiles",
-      "title" => "CLIENT MONEY"
-    ],
-    "144400104" => [
-      "image" => "makeempay",
-      "title" => "MAKE ‘EM PAY"
-    ],
-    "144397831" => [
-      "image" => "yourehired",
-      "title" => "YOU’RE HIRED"
-    ],
-    "144166411" => [
-      "image" => "casebusters",
-      "title" => "CASE BUSTERS"
-    ],
-    "143913265" => [
-      "image" => "smoothestman",
-      "title" => "SUBRO’S SMOOTHEST MAN"
-    ],
-    "143776503" => [
-      "image" => "supercharger",
-      "title" => "WILBER SUPER CHARGER"
-    ],
-    "137425791" => [
-      "image" => "5khaos",
-      "title" => "WILBER 5KHAOS"
-    ],
-    "124321928" => [
-      "image" => "whywilber",
-      "title" => "WHY WILBER"
-    ],
-  ];
-?>
+
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -87,8 +48,7 @@
 
             .video-item {
               height: auto;
-              width: 46%;
-              margin: ;
+              width: 45.9%;
               overflow: hidden;
               border-radius: 0.75em;
               position: relative;
@@ -392,19 +352,61 @@
 
       <div class="video-item-container">
 
-          <?php
-
-          foreach($config as $vimeo_uri => $clip) {
-
-          ?>
-
-          <a class="video-item" href="#<?php echo $vimeo_uri; ?>" data-vimeo-uri="<?php echo $vimeo_uri; ?>">
-            <img src="img/videos/<?php echo $clip['image']; ?>.jpg" alt="" class="video-item__image">
-            <span class="video-item__title"><?php echo $clip['title']; ?></span>
+          
+          <a class="video-item" href="#144419979" data-vimeo-uri="144419979">
+            <img src="img/videos/workhardplayhard.jpg" alt="" class="video-item__image">
+            <span class="video-item__title">WORK HARD PLAY HARD</span>
           </a>
 
-          <?php } ?>
+          
+          <a class="video-item" href="#144405599" data-vimeo-uri="144405599">
+            <img src="img/videos/clientfiles.jpg" alt="" class="video-item__image">
+            <span class="video-item__title">TOUGH CASES</span>
+          </a>
 
+          
+          <a class="video-item" href="#144400104" data-vimeo-uri="144400104">
+            <img src="img/videos/makeempay.jpg" alt="" class="video-item__image">
+            <span class="video-item__title">MAKE ‘EM PAY</span>
+          </a>
+
+          
+          <a class="video-item" href="#144397831" data-vimeo-uri="144397831">
+            <img src="img/videos/yourehired.jpg" alt="" class="video-item__image">
+            <span class="video-item__title">YOU’RE HIRED</span>
+          </a>
+
+          
+          <a class="video-item" href="#144166411" data-vimeo-uri="144166411">
+            <img src="img/videos/casebusters.jpg" alt="" class="video-item__image">
+            <span class="video-item__title">CASE BUSTERS</span>
+          </a>
+
+          
+          <a class="video-item" href="#143913265" data-vimeo-uri="143913265">
+            <img src="img/videos/smoothestman.jpg" alt="" class="video-item__image">
+            <span class="video-item__title">SUBRO’S SMOOTHEST MAN</span>
+          </a>
+
+          
+          <a class="video-item" href="#143776503" data-vimeo-uri="143776503">
+            <img src="img/videos/supercharger.jpg" alt="" class="video-item__image">
+            <span class="video-item__title">WILBER SUPER CHARGER</span>
+          </a>
+
+          
+          <a class="video-item" href="#137425791" data-vimeo-uri="137425791">
+            <img src="img/videos/5khaos.jpg" alt="" class="video-item__image">
+            <span class="video-item__title">WILBER 5KHAOS</span>
+          </a>
+
+          
+          <a class="video-item" href="#124321928" data-vimeo-uri="124321928">
+            <img src="img/videos/whywilber.jpg" alt="" class="video-item__image">
+            <span class="video-item__title">WHY WILBER</span>
+          </a>
+
+          
       </div>
 
 
@@ -430,9 +432,9 @@
         </script>
 
         <script>
-        var videoHash = JSON.parse('<?php echo json_encode($config); ?>');
+        var videoHash = JSON.parse('{"144419979":{"image":"workhardplayhard","title":"WORK HARD PLAY HARD"},"144405599":{"image":"clientfiles","title":"CLIENT MONEY"},"144400104":{"image":"makeempay","title":"MAKE \u2018EM PAY"},"144397831":{"image":"yourehired","title":"YOU\u2019RE HIRED"},"144166411":{"image":"casebusters","title":"CASE BUSTERS"},"143913265":{"image":"smoothestman","title":"SUBRO\u2019S SMOOTHEST MAN"},"143776503":{"image":"supercharger","title":"WILBER SUPER CHARGER"},"137425791":{"image":"5khaos","title":"WILBER 5KHAOS"},"124321928":{"image":"whywilber","title":"WHY WILBER"}}');
 
-        var module = (function(ga, videoHash){
+        var module = (function(){
           var el = {
             $video_container: $('#video-show-div'),
             $video_items: $('.video-item'),
@@ -458,7 +460,7 @@
           };
 
           var showVideo = function(vimeo_uri) {
-            el.$video_container.html('<div class="embed-container"><iframe src="http://player.vimeo.com/video/' + vimeo_uri + '?autoplay=1" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>');
+            el.$video_container.html('<div class="embed-container"><iframe src="https://player.vimeo.com/video/' + vimeo_uri + '?autoplay=1" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>');
             gaTrackEvent(vimeo_uri);
             var top = el.$video_container.offset().top;
             $('html,body').scrollTop(top - 100);
@@ -474,7 +476,7 @@
             init: init
           };
 
-        })(ga, videoHash);
+        })();
 
         $(document).ready(function(){
           module.init();
